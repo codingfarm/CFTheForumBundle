@@ -1,0 +1,19 @@
+<div class="cf-user-meta">
+    {% include 'CFTheForumBundle:Forum:_editor_user_meta.html.twig' %}
+</div>
+<div class="cf-post-editor-body">
+    <div class="cf-errors">{{ form_errors(form.body) }}</div>
+    {% if form.author %}
+            <div class="">
+                {{ form_label(form.author.nickname,'Ваше имя на форуме') }}
+            </div>
+            <div>
+
+                {{ form_widget(form.author.nickname) }}
+                <span class="errors">{{ form_errors(form.author.nickname) }}</span>
+            </div>
+    {% endif %}
+    {{ form_widget(form.body, {'attr':{'class':'wysiwyg' }}) }}
+    <input type="submit" value="{{ 'topic.add.post.form.button'|trans }}" class="cf-btn">
+</div>
+{{ form_rest(form) }}

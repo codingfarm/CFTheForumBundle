@@ -1,0 +1,19 @@
+parameters:
+    forum.bbcode_filter.main.class: CF\TheForumBundle\Editor\Filters\BBcodeFilter
+    forum.bbcode_filter.video.class: CF\TheForumBundle\Editor\Filters\ForumVideoFilter
+    forum.bbcode_filter.image.class: CF\TheForumBundle\Editor\Filters\ImageFilter
+    forum.bbcode_filter.url.class: mjohnson\decoda\filters\UrlFilter
+
+services:
+    forum.bbcode_filter.main:
+        class: %forum.bbcode_filter.main.class%
+    forum.bbcode_filter.image:
+        class: %forum.bbcode_filter.image.class%
+    forum.bbcode_filter.video:
+        class: %forum.bbcode_filter.video.class%
+        arguments:
+          - {iframe_width: %forum.video.width%, iframe_height: %forum.video.height%}
+          - @router
+
+    forum.bbcode_filter.url:
+        class: %forum.bbcode_filter.url.class%

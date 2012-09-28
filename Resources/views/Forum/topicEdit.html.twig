@@ -1,0 +1,19 @@
+{% extends forum_layout_template %}
+
+{% block forum_content %}
+    <h1>{{ 'topic.create.header'|trans }}</h1>
+    {{ form_errors(form) }}
+    <div class="cf-post-editor">
+    <form action="{{ path('forum_topic_save') }}" method="post">
+        {{form_row(form.name)}}
+        {{form_row(form.category)}}
+
+        {{form_widget(form.firstPost.body,{'attr':{'class':'wysiwyg' }}) }}
+        {{form_rest(form)}}
+        <br/>
+        <input type="submit" value="{{ 'topic.create.new.form.button'|trans }}" class="cf-btn">
+    </form>
+    </div>
+
+    {% include 'CFTheForumBundle:Forum:_jsEditor.html.twig' %}
+{% endblock %}

@@ -1,0 +1,35 @@
+parameters:
+    forum.post_form_type.class: CF\TheForumBundle\Form\PostFormType
+    forum.topic_form_type.class: CF\TheForumBundle\Form\TopicFormType
+
+
+services:
+
+    forum.post_form_type:
+        class: %forum.post_form_type.class%
+
+    forum.topic_form_type:
+        class: %forum.topic_form_type.class%
+
+
+    forum.post_form:
+        class: Symfony\Component\Form\Form
+        factory_service: form.factory
+        factory_method: create
+        arguments:
+            - @forum.post_form_type
+            - null
+            -
+                data_class: %forum.post.class%
+
+    forum.topic_form:
+        class: Symfony\Component\Form\Form
+        factory_service: form.factory
+        factory_method: create
+        arguments:
+            - @forum.topic_form_type
+            - null
+            -
+                data_class: %forum.topic.class%
+                post_class: %forum.post.class%
+                post_form: @forum.post_form_type

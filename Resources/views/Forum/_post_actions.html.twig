@@ -1,0 +1,24 @@
+<ul>
+
+    <li class="cf-reply">
+        <a href="{{ path('forum_topic_create_post',{'topic_id':post.topic.id,'reply_to':post.id}) }}">{{ 'post.reply'|trans }}</a>
+    </li>
+    {% if permissions.isAllowEdit(post, app.user) %}
+        <li>
+            {# for users #}
+            <a href="{{ path('forum_post_edit', {'id':post.id}) }}">{{ 'post.edit'|trans }}</a>
+        </li>
+        <!--
+                <li>
+                    {# for a moderator #}
+                    <a href="{{ path('forum_post_edit', {'id':post.id}) }}">{{ 'post.edit.moderate'|trans }}</a>
+                </li>
+-->
+        {% if permissions.isModerator(app.user) %}
+            <li>
+                {# for a moderator #}
+                <a href="{{ path('forum_post_delete', {'id':post.id}) }}">{{ 'post.delete'|trans }}</a>
+            </li>
+        {% endif %}
+    {% endif %}
+</ul>

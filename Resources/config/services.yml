@@ -1,0 +1,37 @@
+parameters:
+    forum.forum_conroller.class: CF\TheForumBundle\Controller\ForumController
+
+services:
+    forum.services.permissions:
+        class: CF\TheForumBundle\Services\Permissions
+        arguments: [true]
+
+    forum.services.parser:
+        class: CF\TheForumBundle\Services\Parser
+        arguments: [%forum.bbcode_filters%, @service_container]
+
+    forum.services.resizer:
+          class: CF\TheForumBundle\Services\ResizeFilter
+          arguments: [@kernel]
+
+    forum.services.video_url_parser:
+          class: CF\TheForumBundle\VideoUrlParser\VideoUrlParserFactory
+          arguments: [@service_container]
+
+    forum.services.video.youtube:
+          class: CF\TheForumBundle\VideoUrlParser\YoutubeVideoUrlParser
+
+    forum.services.video.rutube:
+          class: CF\TheForumBundle\VideoUrlParser\RutubeVideoUrlParser
+
+    forum.services.video.smotri:
+          class: CF\TheForumBundle\VideoUrlParser\SmotriVideoUrlParser
+
+    forum.services.video.vimeo:
+          class: CF\TheForumBundle\VideoUrlParser\VimeoVideoUrlParser
+
+    forum.forum_controller:
+        class: %forum.forum_conroller.class%
+        calls:
+          - [setContainer,[@service_container]]
+

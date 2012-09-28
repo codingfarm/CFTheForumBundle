@@ -1,0 +1,8 @@
+{% for  i, post in posts %}
+    <li class="cf-post" id="post_{{ post.id }}">
+        {% include 'CFTheForumBundle:Forum:_post.html.twig' %}
+        <div class="cf-post-actions">
+            {% include 'CFTheForumBundle:Forum:_post_actions.html.twig' %}
+        </div>
+    </li>
+{% endfor %}

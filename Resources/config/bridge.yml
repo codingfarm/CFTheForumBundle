@@ -1,0 +1,7 @@
+parameters:
+    forum.bridge.user_meta.class: CF\TheForumBundle\Bridge\UserMeta
+
+services:
+    forum.bridge.user_meta:
+        class: %forum.bridge.user_meta.class%
+        arguments: [true]

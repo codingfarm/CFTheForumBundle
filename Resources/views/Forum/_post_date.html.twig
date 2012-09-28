@@ -1,0 +1,5 @@
+{% if is_first_post is defined and is_first_post %}
+    {{ post.createdDate|date('d.m.Y H:i:s') }}
+{% else %}
+    {{ time_diff(post.createdDate) }}
+{% endif %}

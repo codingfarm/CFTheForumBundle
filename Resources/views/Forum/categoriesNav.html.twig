@@ -1,0 +1,5 @@
+<ul class="cf-categories cf-count-{{ categories|length }}">
+    {%for category in categories %}
+        <li class="cf-category-{{ category.slug }} {{ current_category!=null and current_category.id==category.id?'current':'' }}"><a href="{{path('forum',{'category':category.slug})}}"><i></i>{{category.name}}</a></li>
+    {% endfor %}
+</ul>

@@ -1,0 +1,37 @@
+{% extends forum_layout_template %}
+
+{%  set current_category_slug = current_category is defined and current_category!=null? current_category.slug:'' %}
+
+{% block forum_content %}
+
+    {% render 'CFTheForumBundle:Forum:categoriesNav' %}
+
+    {% if current_category is defined %}
+        <h2>{{ current_category.name }}</h2>
+    {% endif %}
+
+    <a href="{{ path('forum_topic_create',{'category':current_category_slug}) }}" class="btn">{{ 'topic.create.new'| trans }}</a>
+    <ul class="cf-topics">
+        {% for topic in pager.getCurrentPageResults() %}
+            <li class="cf-topic">
+                <article>
+                    <h2 class="cf-topic-title">
+                        <a href="{{ path('forum_topic',{'topic_id':topic.id}) }}">{{ topic.name }}</a>
+                    </h2>
+                    <ul class="cf-item-meta">
+                        <li class="cf-topic-meta cf-author">
+                            <a href="#users-home" class="author">{{ user_meta.getusername(topic.firstPost.author) }}</a>, {{ topic.createdDate|date("d.m.Y H:i:s") }}
+                        </li>
+                    </ul>
+                    <ul class="cf-topic-meta cf-topic-stat">
+                        <li class="cf-topic-posts">{{ topic.countPosts }}</li>
+                        <li class="cf-topic-created">{{ topic.updatedDate|date("d.m.Y H:i:s") }}</li>
+                    </ul>
+                </article>
+            </li>
+        {% endfor %}
+    </ul>
+
+    {%  include 'CFTheForumBundle:Forum:_topic_pager.html.twig' %}
+
+{% endblock forum_content %}

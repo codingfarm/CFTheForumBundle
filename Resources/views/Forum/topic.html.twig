@@ -1,0 +1,37 @@
+{% extends forum_layout_template %}
+
+
+{% block forum_content %}
+
+    <a href="{{ path('forum') }}">{{ 'topic.back.to.forum'|trans }}</a> /
+    <a href="{{ path('forum',{'category':topic.category.slug}) }}">{{ topic.category.name }}</a>
+
+    <ul class="cf-topic">
+        <li class="cf-topic-title cf-post ">
+            <h2>{{ topic.name }}</h2>
+            {% include 'CFTheForumBundle:Forum:_post.html.twig' with {'post':topic.firstPost,'is_first_post':true} %}
+            <div class="cf-post-actions">
+                {% include 'CFTheForumBundle:Forum:_post_actions.html.twig' with {'post': topic.firstPost,'is_first_post':true } %}
+            </div>
+        </li>
+        {% if is_tree_mode %}
+            {% include 'CFTheForumBundle:Forum:_posts_tree.html.twig' %}
+        {% else %}
+            {% include 'CFTheForumBundle:Forum:_posts_flat.html.twig' %}
+        {% endif %}
+    </ul>
+
+    <hr/>
+
+    <h3>{{ 'topic.add.your.comment'|trans }}</h3>
+
+    <div class="cf-post-editor">
+        <form action="{{ path('forum_topic_add_post',{'topic_id': topic.id}) }}" method="post">
+            {% include "CFTheForumBundle:Forum:_post_form_widgets.html.twig"  with {'form':post_form} %}
+        </form>
+    </div>
+
+    {% include 'CFTheForumBundle:Forum:_jsEditor.html.twig' %}
+
+{% endblock forum_content %}
+

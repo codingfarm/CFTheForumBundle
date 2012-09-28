@@ -1,0 +1,4 @@
+{% set author = author is defined ? author : post.author %}
+<div class="cf-user-pic">
+    <img alt="{{ user_meta.getusername(author) }}" src="{{ user_meta.getuseravatar(author) }}">
+</div>

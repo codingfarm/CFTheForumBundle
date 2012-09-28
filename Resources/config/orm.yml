@@ -1,0 +1,22 @@
+parameters:
+    forum.post.class: CF\TheForumBundle\Entity\Post
+    forum.post_manager.class: CF\TheForumBundle\Entity\PostManager
+
+    forum.topic.class: CF\TheForumBundle\Entity\Topic
+    forum.topic_manager.class: CF\TheForumBundle\Entity\TopicManager
+
+    forum.category.class: CF\TheForumBundle\Entity\Category
+    forum.category_manager.class: CF\TheForumBundle\Entity\CategoryManager
+
+services:
+    forum.post_manager:
+        class: %forum.post_manager.class%
+        arguments: [%forum.post.class%, @doctrine.orm.entity_manager]
+
+    forum.topic_manager:
+        class: %forum.topic_manager.class%
+        arguments: [%forum.topic.class%, @doctrine.orm.entity_manager, @forum.post_manager]
+
+    forum.category_manager:
+        class: %forum.category_manager.class%
+        arguments: [%forum.category.class%, @doctrine.orm.entity_manager]

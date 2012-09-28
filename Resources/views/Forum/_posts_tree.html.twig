@@ -1,0 +1,16 @@
+{% set level = level is defined? level : 0 %}
+
+{% for  i, item in tree %}
+    {% set post = item.post %}
+    <li class="cf-post-level-{{ level }} {{ item.children|length?'cf-has-children':'' }} cf-post cf-post-author_{{ post.author.id }}" id="post_{{ post.id }}">
+        {% include 'CFTheForumBundle:Forum:_post.html.twig' with {'post':post} %}
+        {% if item.children|length>0 %}
+            <ul>
+            {% include 'CFTheForumBundle:Forum:_posts_tree.html.twig' with {'tree':item.children,'level': level+1} %}
+            </ul>
+        {% endif %}
+        <div class="cf-post-actions">
+            {% include 'CFTheForumBundle:Forum:_post_actions.html.twig' %}
+        </div>
+    </li>
+{% endfor %}

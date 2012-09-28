@@ -1,0 +1,6 @@
+CF\TheForumBundle\Entity\Topic:
+  properties:
+    name:
+      - NotBlank: ~
+
+

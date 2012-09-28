@@ -1,0 +1,10 @@
+parameters:
+    forum.twig_extension.class: CF\TheForumBundle\Twig\ForumExtension
+    forum.twig_permission_extension.class: CF\TheForumBundle\Twig\ForumPermissionExtension
+
+services:
+    forum.twig_extension:
+        class: %forum.twig_extension.class%
+        arguments: [@forum.bridge.user_meta, @forum.services.permissions, @forum.services.parser, @service_container, %forum.templates.layout%]
+        tags:
+          - {name: twig.extension}

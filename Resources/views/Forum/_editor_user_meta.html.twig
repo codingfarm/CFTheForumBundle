@@ -1,0 +1,4 @@
+{% if is_granted('ROLE_USER') %}
+    {% include 'CFTheForumBundle:Forum:_post_username.html.twig' with {'author':app.user} %}
+    {% include 'CFTheForumBundle:Forum:_post_userpic.html.twig'  with {'author':app.user} %}
+{% endif %}

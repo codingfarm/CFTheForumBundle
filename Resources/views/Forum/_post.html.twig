@@ -1,0 +1,37 @@
+<article data-reply-id="7545" data-item-id="7545" data-author-id="{{ post.author.id }}" class="{{ post.isBlocked?'cf-post-blocked':'' }}">
+    <div class="cf-user-meta">
+
+        {% if not post.isBlocked %}
+            {% include 'CFTheForumBundle:Forum:_post_username.html.twig' %}
+            {% include 'CFTheForumBundle:Forum:_post_userpic.html.twig' %}
+        {% endif %}
+    </div>
+    <div class="cf-post-anchor"><a href="#post_{{ post.id }}" title="{{ 'post.anchor.title'|trans }}">⚓</a></div>
+
+    <div class="cf-post-body">
+        {% if not post.isBlocked %}
+            {{ parser.bbcode(post.body)|raw }}
+        {% else %}
+            <div class="cf-post-blocked-message">
+                {{ 'post.blocked.message'|trans }}
+            </div>
+        {% endif %}
+    </div>
+
+    <div class="cf-post-meta">
+        {% if not is_tree_mode and post.replyPost %}
+            <div class="cf-post-reply-to">
+                {{ 'post.is.answer.to'|trans }}
+                <a href="#post_{{ post.replyPost.id }}">#{{ post.replyPost.id }}</a> &nbsp;<i class="cf-icon-author"></i>{{ user_meta.username(post.replyPost.author) }}
+            </div>
+        {% endif %}
+
+        <div class="cf-date">
+            {% include 'CFTheForumBundle:Forum:_post_date.html.twig' %}
+        </div>
+    </div>
+
+
+</article>
+
+

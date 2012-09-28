@@ -1,0 +1,113 @@
+<script type="text/javascript">
+
+    $.fn.insertImage = function (imgurl, thumburl) {
+        var editor = this.data("wbb");
+        var code = (thumburl) ? editor.getCodeByCommand('link', {url:imgurl, seltext:editor.getCodeByCommand('myimg', {src:thumburl})}) : editor.getCodeByCommand('myimg', {src:imgurl});
+        this.insertAtCursor(code);
+        return editor;
+    };
+
+    window.WysiBBInit = function () {
+
+        var img_uploadurl = '{{ path('forum_image_upload') }}';
+        var video_uploadurl = '{{ path('forum_get_video') }}';
+        var txtArea = $(this);
+        var id = txtArea.attr("id");
+
+        txtArea.wysibb({
+            buttons:'bold,italic,|,bullist,|,myimg,|,myvideo',
+            disablePageStyles:true,
+            editorStyles:'/css/ttk-forum-editor.css',
+            allButtons:{
+                myimg:{
+                    title:"{{ 'editor.title.img_button_title'|trans }}",
+                    buttonHTML:'<span class="ve-tlb-img"></span>',
+                    modal:{
+                        title:"{{ 'editor.title.img_title'|trans }}",
+                        width:"600px",
+                        tabs:[
+                            {
+                                html:'<div id="imguploader"> <form id="fupform" class="upload" action="' + img_uploadurl + '" method="post" enctype="multipart/form-data" target="fupload"><input type="hidden" name="iframe" value="1"/><input type="hidden" name="idarea" value="' + id + '" /><div class="fileupload"><input id="fileupl" class="file" type="file" name="img" /><button id="nicebtn" class="wbb-button">{{ 'editor.title.img_button'|trans }}</button> </div> </form> </div><iframe id="fupload" name="fupload" src="about:blank" frameborder="0" style="width:0px;height:0px;display:none"></iframe></div>'
+                            }
+                        ],
+                        onLoad:function () {
+                            $('link').each($.proxy(function (idx, el) {
+                                var sriptMatch = $(el).get(0).href.match(/(.*\/)(.*)\/wbbtheme\.css.*$/);
+                                if (sriptMatch !== null) {
+                                    this.options.themeName = sriptMatch[2];
+                                    this.options.themePrefix = sriptMatch[1];
+                                }
+                            }, this));
+
+                            $modal = $('<div>').attr("id", "wbbmodal");
+                            $.log("imgLoadModal");
+                            /*
+                             drug & drop
+                             this.$modal.find("#imguploader").dragfileupload({
+                             url: img_uploadurl,
+                             extraParams: {
+                             maxwidth: 300,
+                             maxheight: 500
+                             },
+
+                             success: $.proxy(function(data) {
+                             this.$txtArea.insertImage(data.image_link,data.thumb_link);
+
+                             this.closeModal();
+                             this.updateUI();
+                             },this)
+                             });*/
+
+                            if ($.browser.msie) {
+                                //ie not posting form by security reason, show default file upload
+                                $.log("IE not posting form by security reason, show default file upload");
+                                this.$modal.find("#nicebtn").hide();
+                                this.$modal.find("#fileupl").css("opacity", 1);
+                            }
+
+                            this.$modal.find("#fileupl").bind("change", function () {
+                                $("#fupform").submit();
+                            });
+                            this.$modal.find("#fupform").bind("submit", $.proxy(function (e) {
+                                $(e.target).parents("#imguploader").hide().after('<div class="loader"><img src="' + this.options.themePrefix + '/' + this.options.themeName + '/img/loader.gif" /><br/><span>{{ 'editor.title.img_status_upload'|trans }}</span></div>').parent().css("text-align", "center");
+                            }, this))
+                        }
+
+                    },
+                    transform:{
+                        '<img src="{SRC}" />':"[img]{SRC}[/img]",
+                        '<img src="{SRC}" >':"[img width={WIDTH},height={HEIGHT}]{SRC}[/img]"
+                    }
+                },
+                myvideo:{
+                    title:"{{ 'editor.title.video_button_title'|trans }}",
+                    buttonHTML:'<span class="ve-tlb-video"></span>',
+                    modal:{
+                        title:"{{ 'editor.title.video_modal_title'|trans }}",
+                        width:"600px",
+                        tabs:[
+                            {
+                                input:[
+                                    {param:"SRC", title:"{{ 'editor.title.video_title'|trans }}" }
+                                ]
+                            }
+                        ],
+                        onSubmit:function (cmd, opt, queryState) {
+                            var url = this.$modal.find('input[name="SRC"]').val();
+                            this.insertAtCursor(this.getCodeByCommand(cmd, {src:url}));
+                            this.closeModal();
+
+                            return false;
+                        }
+                    },
+                    transform:{
+                        '<iframe src="{{ path('forum_get_video') }}?videourl={SRC}" width="{{video_parameters.width + 10}}" height="{{video_parameters.height + 10}}" frameborder="0" /></iframe>':'[forumvideo]{SRC}[/forumvideo]'
+                    }
+                }
+            }
+        }).removeAttr('required');
+    }
+
+    $('form .wysiwyg').each(window.WysiBBInit);
+
+</script>

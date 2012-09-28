@@ -1,0 +1,53 @@
+forum:
+    pattern:  /
+    defaults: { _controller: CFTheForumBundle:Forum:index }
+    requirements:
+      _method: GET
+
+forum_topic_save:
+    pattern: /
+    defaults: {_controller: CFTheForumBundle:Forum:topicCreate}
+    requirements:
+      _method: POST
+
+forum_topic_create:
+    pattern: /topic
+    defaults: {_controller: CFTheForumBundle:Forum:topicCreate}
+
+forum_topic:
+    pattern: /{topic_id}
+    defaults: { _controller: CFTheForumBundle:Forum:topic }
+    requirements:
+        _method:  GET
+
+forum_topic_create_post:
+    pattern: /{topic_id}/post
+    defaults: { _controller: CFTheForumBundle:Forum:createPost }
+    requirements:
+        _method:  GET
+
+forum_topic_add_post:
+    pattern: /{topic_id}
+    defaults: { _controller: CFTheForumBundle:Forum:createPost }
+    requirements:
+        _method:  POST
+
+forum_post_edit:
+    pattern: /post/{id}/edit
+    defaults: { _controller: CFTheForumBundle:Forum:postEdit }
+
+forum_post_delete:
+    pattern: /post/{id}/delete
+    defaults: { _controller: CFTheForumBundle:Forum:postDelete }
+
+forum_post_update:
+    pattern: /post/{id}/edit
+    defaults: { _controller: CFTheForumBundle:Forum:postEdit }
+
+forum_image_upload:
+    pattern: /editor/upload_image
+    defaults: { _controller: CFTheForumBundle:Editor:imageUpload }
+
+forum_get_video:
+    pattern: /editor/getvideo
+    defaults: { _controller: CFTheForumBundle:Editor:getVideo }

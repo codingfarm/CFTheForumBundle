@@ -1,0 +1,4 @@
+{% set author = author is defined ? author : post.author %}
+<span class="cf-users-data">
+    <span class="cf-nickname">{{ user_meta.username(author) }}</span>
+</span>

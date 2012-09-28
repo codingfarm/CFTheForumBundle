@@ -1,0 +1,34 @@
+topic.name: Название темы
+topic.create.new: Создать новую тему
+topic.create.header: Создание новой темы
+topic.create.new.form.button: Задать тему
+topic.create.choise.category: Выберите категорию
+topic.back.to.forum: Все темы
+topic.add.post.form.button: Добавить сообщение
+topic.add.your.comment: Оставить комментарий
+
+post.reply: Ответить
+post.reply.undo: Отменить
+post.edit: Редактировать
+post.edit.header: Ваше мнение
+post.edit.reply.header: Ваше мнение на комментарий
+post.save: Сохранить
+post.edit.moderate: Исправить
+post.delete: Удалить сообщение
+post.body.label: Сообщение
+post.delete.form.button: Применить
+post.blocked.message: Данное сообщение заблокированно модератором
+post.is.answer.to: Ответ на сообщение
+
+
+soft.delete.choice: Заблокировать
+hard.delete.choice: Удалить
+
+editor.title.img_button_title: Вставка картинки с компьютера
+editor.title.img_title: Вставить изображение
+editor.title.img_button: Выберите изображение для загрузки
+editor.title.img_status_upload: Идет загрузка...
+editor.title.video_button_title: Вставка видео по ссылке
+editor.title.video_modal_title: Вставить видео
+editor.title.video_title: Вставьте URL видео (только адреса из youtube.com, rutube.ru, vimeo.com, smotri.com, mirttk.ru)
+editor.error.load_image: Ошибка при загрузке файла
