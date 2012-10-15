@@ -1,10 +1,11 @@
 parameters:
     forum.forum_conroller.class: CF\TheForumBundle\Controller\ForumController
+    forum.services.permissions.class: CF\TheForumBundle\Services\Permissions
 
 services:
     forum.services.permissions:
-        class: CF\TheForumBundle\Services\Permissions
-        arguments: [true]
+        class: %forum.services.permissions.class%
+        arguments: [@forum.category_manager]
 
     forum.services.parser:
         class: CF\TheForumBundle\Services\Parser

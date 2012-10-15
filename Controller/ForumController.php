@@ -63,11 +63,12 @@ class ForumController extends BaseController
         $talkersStat = $this->getPostManager()->fetchAuthorsStatFromPosts($this->getPostManager()->getTopicPosts($topic_id));
 
         $viewParams = array(
-            'is_tree_mode'   => $isTreeMode,
-            'topic'          => $topic,
-            'post_form'      => $postForm->createView(),
-            'post_form_clone'=> $postForm->createView(),
-            'talkers_stat'   => $talkersStat
+            'is_tree_mode'    => $isTreeMode,
+            'topic'           => $topic,
+            'post_form'       => $postForm->createView(),
+            'post_form_clone' => $postForm->createView(),
+            'talkers_stat'    => $talkersStat,
+            'current_category'=> $topic->getCategory()
         );
 
         if ($isTreeMode) {
@@ -287,7 +288,6 @@ class ForumController extends BaseController
             )
         );
     }
-
 
 
     private function processTopicForm($form)

@@ -12,13 +12,22 @@ namespace CF\TheForumBundle\Model;
  *
  * @author Studenikin Sergey <studenikin.s@gmail.com>
  */
-interface CategoryManagerInterface extends GeneralManagerInterface{
+interface CategoryManagerInterface extends GeneralManagerInterface
+{
 
     /**
      * Return an object by the slug
      *
      * @param string $slug
-     * @return CF\TheForumBundle\Model\CategoryInterface
+     * @return \CF\TheForumBundle\Model\CategoryInterface
      */
     public function findBySlug($slug);
+
+    /**
+     * Return moderator role name for the category
+     *
+     * @param string $slug
+     * @return string
+     */
+    public function getModeratorRoleNameByCategory(CategoryInterface $category);
 }

@@ -5,7 +5,6 @@
 
 namespace CF\TheForumBundle\Model;
 
-
 /**
  * CategoryInterface.
  *
@@ -33,6 +32,20 @@ interface CategoryInterface
      * @return string
      */
     public function getName();
+
+    /**
+     * Return the slug of the category
+     *
+     * @return string
+     */
+    public function getSlug();
+
+    /**
+     * Set the slug of the category
+     *
+     * @param string $slug
+     */
+    public function setSlug($slug);
 
     /**
      * Set order of the category

@@ -24,4 +24,11 @@ interface PermissionsInterface
      */
     public function isAllowEdit(\CF\TheForumBundle\Model\PostInterface $post, $user);
 
+    /**
+     * @param \Symfony\Component\Security\Core\User\UserInterface $user
+     * @param string $role Role name
+     * @return Boolean
+     */
+    public function hasUserRole(UserInterface $user, $role);
+
 }

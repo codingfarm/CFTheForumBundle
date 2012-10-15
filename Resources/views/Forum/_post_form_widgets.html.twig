@@ -14,6 +14,6 @@
             </div>
     {% endif %}
     {{ form_widget(form.body, {'attr':{'class':'wysiwyg' }}) }}
-    <input type="submit" value="{{ 'topic.add.post.form.button'|trans }}" class="cf-btn">
+    <button type="submit"  class="cf-btn">{{ 'topic.add.post.form.button'|trans }}</button>
 </div>
 {{ form_rest(form) }}

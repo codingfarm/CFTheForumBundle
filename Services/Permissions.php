@@ -6,6 +6,8 @@
 namespace CF\TheForumBundle\Services;
 
 use CF\TheForumBundle\Services\PermissionsInterface;
+use CF\TheForumBundle\Model\CategoryManagerInterface;
+use CF\TheForumBundle\Model\CategoryInterface;
 use DateTime;
 use DateInterval;
 use Symfony\Component\Security\Core\User\UserInterface;
@@ -16,8 +18,15 @@ use Symfony\Component\Security\Core\User\UserInterface;
  * @author Studenikin Sergey <studenikin.s@gmail.com>
  */
 
-class Permissions implements PermissionsInterface
+abstract class Permissions implements PermissionsInterface
 {
+
+    private $categoryManager;
+
+    public function __construct(CategoryManagerInterface $categoryManager)
+    {
+        $this->categoryManager = $categoryManager;
+    }
 
     /**
      * Check the user. If it's the post's owner or a moderator then return true, else return false.
@@ -29,7 +38,9 @@ class Permissions implements PermissionsInterface
     {
         if (!($user instanceof UserInterface)) {
             return false;
-        } elseif ($this->isModerator($user)) {
+        }
+
+        if ($this->isModerator($user, $post->getTopic()->getCategory())) {
             return true;
         } elseif ($post->getAuthor()->getId() == $user->getId()) {
             // todo: fix hardcoded 10m expiration
@@ -39,13 +50,20 @@ class Permissions implements PermissionsInterface
         return false;
     }
 
-    public function hasUserRole(UserInterface $user, $role)
-    {
-        return in_array(strtoupper($role), $user->getRoles(), true);
-    }
 
-    public function isModerator($user)
+    public function isModerator($user, CategoryInterface $category = null)
     {
-        return ($user instanceof UserInterface) && $this->hasUserRole($user, 'ROLE_FORUM_MODERATOR');
+        if (!($user instanceof UserInterface)) {
+            return false;
+        }
+
+        if ($this->hasUserRole($user, 'ROLE_FORUM_MODERATOR')) {
+            return true;
+        }
+        elseif ($category !== null and $this->hasUserRole($user, $this->categoryManager->getModeratorRoleNameByCategory($category))) {
+            return true;
+        }
+
+        return false;
     }
 }
