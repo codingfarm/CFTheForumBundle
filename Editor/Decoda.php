@@ -16,7 +16,7 @@ class Decoda extends BaseDecoda
      * Add additional filters.
      *
      * @access public
-     * @param \mjohnson\decoda\filters\FilterInterface $filter
+     * @param \mjohnson\decoda\filters\Filter $filter
      * @return \mjohnson\decoda\Decoda
      * @chainable
      */

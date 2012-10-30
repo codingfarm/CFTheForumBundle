@@ -30,5 +30,5 @@ editor.title.img_button: Выберите изображение для загр
 editor.title.img_status_upload: Идет загрузка...
 editor.title.video_button_title: Вставка видео по ссылке
 editor.title.video_modal_title: Вставить видео
-editor.title.video_title: Вставьте URL видео (только адреса из youtube.com, rutube.ru, vimeo.com, smotri.com, mirttk.ru)
+editor.title.video_title: Вставьте URL видео (только адреса из youtube.com, okno.ru, rutube.ru, vimeo.com, smotri.com)
 editor.error.load_image: Ошибка при загрузке файла
