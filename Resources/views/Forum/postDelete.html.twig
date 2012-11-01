@@ -2,8 +2,14 @@
 
 {% block forum_content %}
     <form method="post" action="{{ path('forum_post_delete',{'id':post.id}) }}">
-        {{ form_widget(form.type) }}
-        {{ form_rest(form) }}
-        <button type="submit">{{ 'post.delete.form.button'|trans }}</button>
+        <div class="cf-moderate-form">
+            <h1>{{ 'post.delete.title'|trans }}</h1>
+            <pre>{{ post.body }}</pre>
+            <div class="cf-moderate-type">
+                {{ form_widget(form.type) }}
+            </div>
+            {{ form_rest(form) }}
+            <button class="cf-btn" type="submit">{{ 'post.delete.form.button'|trans }}</button>
+        </div>
     </form>
 {% endblock %}
