@@ -1,3 +1,5 @@
+{% set buttons = 'bold,italic,|,bullist'~(without_media_buttons is defined and without_media_buttons?'':',|,myimg,|,myvideo') %}
+
 <script type="text/javascript">
 
     $.fn.insertImage = function (imgurl, thumburl) {
@@ -15,7 +17,7 @@
         var id = txtArea.attr("id");
 
         txtArea.wysibb({
-            buttons:'bold,italic,|,bullist,|,myimg,|,myvideo',
+            buttons:'{{ buttons }}',
             disablePageStyles:true,
             editorStyles:'/css/ttk-forum-editor.css',
             allButtons:{
