@@ -18,7 +18,7 @@ post.delete: Удалить сообщение
 post.body.label: Сообщение
 post.delete.form.button: Применить
 post.delete.title: Модерирование/Удаление сообщения
-post.blocked.message: Данное сообщение заблокированно модератором
+post.blocked.message: Данное сообщение заблокировано модератором
 post.is.answer.to: Ответ на сообщение
 
 
