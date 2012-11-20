@@ -5,7 +5,7 @@
     <div class="cf-post-editor">
 
         <form action="{{ path('forum_post_update',{'id':app.request.attributes.get('id')}) }}" method="post">
-            {%  include "CFTheForumBundle:Forum:_post_form_widgets.html.twig"  with {'form':form}%}
+            {%  include "CFTheForumBundle:Forum:_post_form_widgets.html.twig"  with {'form':form,'post_edit':true}%}
         </form>
     </div>
     {% include 'CFTheForumBundle:Forum:_jsEditor.html.twig' %}

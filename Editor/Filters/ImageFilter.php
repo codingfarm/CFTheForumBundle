@@ -3,6 +3,7 @@ namespace CF\TheForumBundle\Editor\Filters;
 
 use mjohnson\decoda\filters\FilterAbstract;
 use CF\TheForumBundle\Editor\Decoda; //use mjohnson\decoda\filters\ImageFilter as BaseImageFilter;
+//use mjohnson\decoda\filters\ImageFilter as decImageFilter;
 
 class ImageFilter extends FilterAbstract
 {

@@ -1,3 +1,4 @@
+{% set textarea_class = (post_edit is defined and post_edit and permissions.isModerator(app.user))?'raw':'wysiwyg' %}
 <div class="cf-user-meta">
     {% include 'CFTheForumBundle:Forum:_editor_user_meta.html.twig' %}
 </div>
@@ -13,7 +14,7 @@
                 <span class="errors">{{ form_errors(form.author.nickname) }}</span>
             </div>
     {% endif %}
-    {{ form_widget(form.body, {'attr':{'class':'wysiwyg' }}) }}
+    {{ form_widget(form.body, {'attr':{'class': textarea_class }}) }}
     <button type="submit"  class="cf-btn">{{ 'topic.add.post.form.button'|trans }}</button>
 </div>
 {{ form_rest(form) }}
