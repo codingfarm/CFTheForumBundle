@@ -11,6 +11,7 @@
     ],
     "name": "codingfarm/the-forum-bundle",
     "type": "symfony-bundle",
+    "keywords":["forum","community","talk"],
 
     "require": {
         "knplabs/knp-time-bundle": "dev-master",
