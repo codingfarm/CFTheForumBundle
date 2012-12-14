@@ -1,0 +1,27 @@
+{
+    "authors": [
+        {
+            "email": "info@jeka.ru",
+            "name": "Eugeny Fomin"
+        },
+        {
+            "name": "Sergey Studenikin",
+            "email": "studenikin.s@gmail.com"
+        }
+    ],
+    "name": "codingfarm/the-forum-bundle",
+    "type": "symfony-bundle",
+
+    "require": {
+        "knplabs/knp-time-bundle": "dev-master",
+        "white-october/pagerfanta-bundle": "dev-symfony2.0"
+    },
+
+    "autoload": {
+        "psr-0": {
+            "CF\\TheForumBundle": ""
+        }
+    },
+
+    "target-dir": "CF/TheForumBundle"
+}
