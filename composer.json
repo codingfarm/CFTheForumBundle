@@ -15,7 +15,7 @@
 
     "require": {
         "knplabs/knp-time-bundle": "dev-master",
-        "white-october/pagerfanta-bundle": "dev-symfony2.0"
+        "white-october/pagerfanta-bundle": "dev-symfony"
     },
 
     "autoload": {
