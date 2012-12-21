@@ -74,6 +74,21 @@ class PostManager extends ForumAbstractManager implements PostManagerInterface
     }
 
 
+    public function getLastPost($topicId)
+    {
+        $qb = $this->repository->createQueryBuilder('p')
+            ->join('p.author', 'u')
+            ->andWhere('p.topic = :topic_id')
+            ->setParameter('topic_id', $topicId)
+            ->orderBy('p.createdDate', 'DESC')
+            ->andWhere('p.isDeleted=false')
+            ->andWhere('p.isBlocked=false')
+            ->setMaxResults(1);
+
+        return $qb->getQuery()->getOneOrNullResult();
+    }
+
+
     public function fetchAuthorsStatFromPosts(array $listOfPosts)
     {
         $stat = array();

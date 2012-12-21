@@ -25,6 +25,11 @@ class TopicManager extends ForumAbstractManager implements TopicManagerInterface
         $this->postManager = $postManager;
     }
 
+    protected function getPostManager()
+    {
+        return $this->postManager;
+    }
+
     /**
      * @return \CF\TheForumBundle\Model\TopicInterface
      */

@@ -276,6 +276,8 @@ class ForumController extends BaseController
                     $redirectUrl = $this->generateUrl('forum');
                 }
 
+                $this->getTopicManager()->refreshTopicData($topic->getId());
+
                 return $this->redirect($redirectUrl);
             }
         }
