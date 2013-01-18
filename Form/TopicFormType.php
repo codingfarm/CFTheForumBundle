@@ -4,13 +4,13 @@ namespace CF\TheForumBundle\Form;
 
 
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\FormBuilder;
+use Symfony\Component\Form\FormBuilderInterface;
 
 class TopicFormType extends AbstractType
 {
 
 
-    public function buildForm(FormBuilder $builder, array $options)
+    public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder->add('name', null, array('label' => 'topic.name'));
         $builder->add('category', null, array('label' => 'topic.create.choise.category'));

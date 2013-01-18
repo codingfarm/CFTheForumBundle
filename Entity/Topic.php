@@ -30,12 +30,12 @@ abstract class Topic extends  BaseTopic
 
 
     /**
-     * @ORM\Column(type="datetime", name="updated_date", nullable="true")
+     * @ORM\Column(type="datetime", name="updated_date", nullable=true)
      */
     private $updatedDate;
 
     /**
-     * @ORM\Column(type="integer", name="count_posts", nullable="true")
+     * @ORM\Column(type="integer", name="count_posts", nullable=true)
      */
     private $countPosts;
 

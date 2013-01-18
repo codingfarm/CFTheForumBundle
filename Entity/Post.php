@@ -41,13 +41,13 @@ abstract class Post extends AbstractPost
 
 
     /**
-     * @ORM\Column(type="datetime", name="user_updated_date", nullable="true")
+     * @ORM\Column(type="datetime", name="user_updated_date", nullable=true)
      */
     private $authorUpdatedDate;
 
 
     /**
-     * @ORM\Column(type="datetime", name="moderator_updated_date", nullable="true")
+     * @ORM\Column(type="datetime", name="moderator_updated_date", nullable=true)
      */
     private $moderatorUpdatedDate;
 
@@ -59,7 +59,7 @@ abstract class Post extends AbstractPost
 
 
     /**
-     * @ORM\Column(type="integer", name="author_ip", nullable="true")
+     * @ORM\Column(type="integer", name="author_ip", nullable=true)
      */
     private $authorIp;
 
