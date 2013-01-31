@@ -38,4 +38,11 @@ class Parser extends ContainerAware
 
         return $text;
     }
+
+    public function escapeHTML($value = true)
+    {
+        $this->decoda->setEscaping($value);
+
+        return $this;
+    }
 }
