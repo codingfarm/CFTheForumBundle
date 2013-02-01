@@ -18,6 +18,8 @@ services:
     forum.services.video_url_parser:
           class: CF\TheForumBundle\VideoUrlParser\VideoUrlParserFactory
           arguments: [@service_container]
+          calls:
+            - [setServiceList,[%forum.video_url_services%]]
 
     forum.services.video.youtube:
           class: CF\TheForumBundle\VideoUrlParser\YoutubeVideoUrlParser

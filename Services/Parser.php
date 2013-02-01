@@ -35,7 +35,6 @@ class Parser extends ContainerAware
         $text = trim($text);
         $text = preg_replace("/(\s){5,}/s", "\n\n\n", $text);
         $text = $this->decoda->reset($text, false)->parse();
-
         return $text;
     }
 

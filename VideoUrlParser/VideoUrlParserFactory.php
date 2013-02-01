@@ -62,12 +62,12 @@ class VideoUrlParserFactory
 
     /**
      * @param string $url of video. For example: http://www.youtube.com/watch?v=KptFAvfcNsI&feature=g-logo-xit
-     * @return bool|\Exception|concrete class
+     * @return bool|\Exception|VideoUrlParserInterface class
      */
     public function getParser($url)
     {
 
-        foreach($this->getServiceList() as $serviceName) {
+        foreach ($this->getServiceList() as $serviceName) {
 
             $parserService = $this->container->get($serviceName);
 
@@ -80,11 +80,10 @@ class VideoUrlParserFactory
                 }
             } else {
 
-               return new Exception($serviceName . " is not instanceof CF\TheForumBundle\VideoUrlParser\VideoUrlParserInterface");
-
+                return new Exception($serviceName . " is not instanceof CF\TheForumBundle\VideoUrlParser\VideoUrlParserInterface");
             }
         }
 
-         return false;
+        return false;
     }
 }
