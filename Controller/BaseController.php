@@ -50,9 +50,9 @@ abstract class BaseController extends Controller
     /**
      * @return User
      */
-    protected function getUser()
+    public function getUser()
     {
-        return $this->container->get('security.context')->getToken()->getUser();
+        return parent::getUser();
     }
 
     /**
