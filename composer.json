@@ -16,7 +16,7 @@
     "require": {
         "symfony/framework-bundle": "2.*",
         "knplabs/knp-time-bundle": "1.1",
-        "white-october/pagerfanta-bundle": "1.0.*@dev",
+        "white-october/pagerfanta-bundle": "*",
         "mjohnson/decoda": "4.1.1"
     },
 
