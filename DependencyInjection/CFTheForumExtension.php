@@ -33,7 +33,6 @@ class CFTheForumExtension extends Extension
         $loader->load('services.yml');
         $loader->load('twig.yml');
 
-
         if (!empty($config['class']['model']['post'])) {
             $container->setParameter('forum.post.class', $config['class']['model']['post']);
         }
@@ -46,7 +45,12 @@ class CFTheForumExtension extends Extension
         if (!empty($config['class']['bridge']['user_meta'])) {
             $container->setParameter('forum.bridge.user_meta.class', $config['class']['bridge']['user_meta']);
         }
-         if (!empty($config['video_url_services'])) {
+
+        if (!empty($config['class']['permissions']['service_class'])) {
+            $container->setParameter('forum.services.permissions.class', $config['class']['permissions']['service_class']);
+        }
+
+        if (!empty($config['video_url_services'])) {
             $container->setParameter('forum.video_url_services', $config['video_url_services']);
         }
         if (!empty($config['image']['upload_dir'])) {
@@ -72,8 +76,8 @@ class CFTheForumExtension extends Extension
             $config['templates']['layout'] = 'CFTheForumBundle::forum_layout.html.twig';
         }
 
-        if (!empty($config['bbcode_filters'])){
-            $container->setParameter('forum.bbcode_filters',$config['bbcode_filters']);
+        if (!empty($config['bbcode_filters'])) {
+            $container->setParameter('forum.bbcode_filters', $config['bbcode_filters']);
         }
 
         $container->setParameter('forum.templates.layout', $config['templates']['layout']);

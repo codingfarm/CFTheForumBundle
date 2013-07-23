@@ -56,7 +56,11 @@ class Configuration implements ConfigurationInterface
                                 ->scalarNode('user_meta')->isRequired()->end()
                             ->end()
                         ->end()
-
+                        ->arrayNode('permissions')->isRequired()
+                             ->children()
+                                 ->scalarNode('service_class')->isRequired()->end()
+                             ->end()
+                        ->end()
                     ->end()
                 ->end()
 

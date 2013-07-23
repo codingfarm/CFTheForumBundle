@@ -64,6 +64,77 @@ public function registerBundles()
 }
 ```
 
+### Step 3: Configuration
+```yml
+# app/config/config.yml
 
+cf_the_forum:
+    db_driver: orm
+    image:
+        upload_dir: /uploads/forum/
+        max_height: 400
+        max_width: 700
+    video:
+        width: 459
+        height: 341
+    video_url_services:
+        - forum.services.video.youtube
+        - forum.services.video.rutube
+        - forum.services.video.smotri
+        - forum.services.video.vimeo
+        - forum.services.video.ttk
+    class:
+        model:
+            post: Application\ForumBundle\Entity\Post
+            topic: Application\ForumBundle\Entity\Topic
+            category: Application\ForumBundle\Entity\Category
+        bridge:
+            user_meta: Application\ForumBundle\Bridge\UserMeta
+        permissions:
+            service_class: Application\ForumBundle\Services\ForumPermissions
+    bbcode_filters:
+        - forum.bbcode_filter.main
+        - forum.bbcode_filter.image
+        - forum.bbcode_filter.video
+        - forum.bbcode_filter.url
+```
 
+### Step 4: Implement model classes
+
+#### Bridge
+
+This class needed to provide the project specific user's data - name, avatar,...
+
+```php
+use CF\TheForumBundle\Bridge\UserMeta as AbstractUserMeta;
+
+class UserMeta extends AbstractUserMeta
+{
+
+    /**
+     * Return the name of the user
+     *
+     * @param $user
+     *
+     * @return string
+     */
+    public function getUsername($user)
+    {
+        return $user->getUsername();
+    }
+
+    /**
+     * Return the picture's url of user's avatar
+     *
+     * @param $user
+     *
+     * @return string (/img/avatars/default.gif)
+     */
+    public function getUserAvatar($user)
+    {
+        // return $user->getAvatarSrc();
+        return '/img/avatars/default.gif';
+    }
+}
+```
 
