@@ -4,7 +4,7 @@
 
 {% block forum_content %}
 
-    {% render 'CFTheForumBundle:Forum:categoriesNav' %}
+    {% render(controller('CFTheForumBundle:Forum:categoriesNav')) %}
 
     {% if current_category is defined %}
         <h2>{{ current_category.name }}</h2>
